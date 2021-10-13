@@ -1,4 +1,5 @@
 #import "FlutterBarcodeScanPlugin.h"
+#import "BarcodeScannerViewController.h"
 
 @implementation FlutterBarcodeScanPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {

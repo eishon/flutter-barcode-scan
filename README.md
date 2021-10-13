@@ -1,15 +1,69 @@
-# flutter_barcode_scan
+# Flutter Barcode Scanner
 
-A new flutter plugin project.
+N.B.: Originial [Barcode Scaner](https://github.com/mtjaffacode/flutter_barcode_reader) is no longer maintained so I updated from the original.
+
+A flutter plugin for scanning 2D barcodes and QR codes. 
+
+This provides a simple wrapper for two commonly used iOS and Android libraries:
+
+iOS: https://github.com/mikebuss/MTBBarcodeScanner
+
+Android: https://github.com/dm77/barcodescanner
+
+### Features
+- [x] Scan 2D barcodes
+- [x] Scan QR codes
+- [x] Control the flash while scanning
+- [x] Permission handling
+- [ ] Support multiple barcode libraries
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+### Android
+For Android, you must do the following before you can use the plugin:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Add the camera permission to your AndroidManifest.xml
+     
+     `<uses-permission android:name="android.permission.CAMERA" />`
 
+* Add the BarcodeScanner activity to your AndroidManifest.xml. Do NOT modify the name.
+    
+     `<activity android:name="eishon.flutter_barcode_scan.BarcodeScannerActivity"/>`
+     
+
+* This plugin is written in Kotlin. Therefore, you need to add Kotlin support to your project. See [installing the Kotlin plugin](https://kotlinlang.org/docs/tutorials/kotlin-android.html#installing-the-kotlin-plugin).
+
+Edit your project-level build.gradle file to look like this:
+
+	buildscript {
+	    ext.kotlin_version = '1.5.0'
+	    ...
+	    dependencies {
+	        ...
+	        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+	    }
+	}
+	...
+
+Edit your app-level build.gradle file to look like this:
+
+	apply plugin: 'kotlin-android'
+	...
+	dependencies {
+	    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+	    ...
+	}
+
+Now you can depend on the barcode_scan plugin in your pubspec.yaml file:
+
+	dependencies:
+	  ...
+	  barcode_scan: any
+
+Click "Packages get" in Android Studio or run `flutter packages get` in your project folder.
+
+### iOS
+To use on iOS, you must add the the camera usage description to your Info.plist
+
+    <key>NSCameraUsageDescription</key>
+    <string>Camera permission is required for barcode scanning.</string>
